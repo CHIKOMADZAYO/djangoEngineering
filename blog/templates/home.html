@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/blog/static/css/styles.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>WebsiteBlog Site</title>
 </head>
 <body>
@@ -15,15 +16,58 @@
 
             <nav class="nav-link">
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Reports</a></li>
-                    <li><a href="">Analytics</a></li>
-                    <li><a href="">Contact</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Reports</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Write, share, and grow your ideas.</h1>
+                <p>
+                    A clean blog experience built for smart content, better storytelling,
+                    and a modern online presence that looks polished on every screen.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Start Reading</a>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <div class="card-box">
+                    <h3>Featured Story</h3>
+                    <p>How to build a strong online brand with simple design and useful content.</p>
+                </div>
+
+                <div class="card-box">
+                    <h3>Weekly Insights</h3>
+                    <p>Fresh ideas, practical tips, and creative tools for growing your audience.</p>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <strong>24k</strong>
+                        <span>Readers</span>
+                    </div>
+                    <div class="stat">
+                        <strong>180+</strong>
+                        <span>Posts</span>
+                    </div>
+                    <div class="stat">
+                        <strong>4.9</strong>
+                        <span>Rating</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
