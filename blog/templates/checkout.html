@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout | NovaCart{% endblock %}
+
+{% block content %}
+<section class="page-hero minimal-hero">
+    <div class="container narrow-copy">
+        <span class="eyebrow">Secure checkout</span>
+        <h1>Complete your order</h1>
+    </div>
+</section>
+
+<section class="checkout-section">
+    <div class="container checkout-layout">
+        <form class="checkout-form">
+            <label>
+                Full name
+                <input type="text" placeholder="Your full name">
+            </label>
+            <label>
+                Email address
+                <input type="email" placeholder="you@example.com">
+            </label>
+            <label>
+                Shipping address
+                <textarea rows="4" placeholder="Street address, city, state, ZIP"></textarea>
+            </label>
+            <label>
+                Card number
+                <input type="text" placeholder="1234 5678 9101 1121">
+            </label>
+            <div class="field-row">
+                <label>
+                    Expiry date
+                    <input type="text" placeholder="MM/YY">
+                </label>
+                <label>
+                    CVV
+                    <input type="text" placeholder="123">
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Place order</button>
+        </form>
+
+        <aside class="summary-panel">
+            <h3>Order summary</h3>
+            {% for item in cart_items %}
+            <div class="checkout-item-row">
+                <span>{{ item.product.name }} x {{ item.quantity }}</span>
+                <strong>${{ item.total }}</strong>
+            </div>
+            {% empty %}
+            <p>Your cart is empty.</p>
+            {% endfor %}
+            <div class="summary-row total-row">
+                <span>Total</span>
+                <strong>${{ total }}</strong>
+            </div>
+        </aside>
+    </div>
+</section>
+{% endblock %}

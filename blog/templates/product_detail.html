@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} | NovaCart{% endblock %}
+
+{% block content %}
+<section class="product-detail-section">
+    <div class="container product-detail-grid">
+        <div class="detail-image-panel">
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+        </div>
+        <div class="detail-copy">
+            <span class="eyebrow">{{ product.category }}</span>
+            <h1>{{ product.name }}</h1>
+            <div class="rating-line">
+                <span>⭐ {{ product.rating }}</span>
+                <span>Free shipping</span>
+            </div>
+            <div class="price-row detail-price">
+                <strong>${{ product.price }}</strong>
+                <span>${{ product.old_price }}</span>
+            </div>
+            <p>{{ product.description }}</p>
+            <ul class="feature-list">
+                {% for feature in product.highlights %}
+                <li>{{ feature }}</li>
+                {% endfor %}
+            </ul>
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Add to cart</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="related-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">You may also like</span>
+            <h2>More premium picks</h2>
+        </div>
+        <div class="product-grid related-grid">
+            {% for item in related_products %}
+            <article class="product-card">
+                <div class="product-image-wrap">
+                    <a href="{% url 'product_detail' item.id %}"><img src="{{ item.image }}" alt="{{ item.name }}"></a>
+                    <span class="product-badge">{{ item.badge }}</span>
+                </div>
+                <div class="product-content">
+                    <div class="product-meta">
+                        <span>⭐ {{ item.rating }}</span>
+                        <span>In stock</span>
+                    </div>
+                    <h3><a href="{% url 'product_detail' item.id %}">{{ item.name }}</a></h3>
+                    <div class="price-row">
+                        <strong>${{ item.price }}</strong>
+                        <span>${{ item.old_price }}</span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,12 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-</head>
-<body>
-    <h1>About Page</h1>
-    <p>This is the about page of the website.</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}About Us | NovaCart{% endblock %}
+
+{% block content %}
+<section class="page-hero minimal-hero">
+    <div class="container narrow-copy">
+        <span class="eyebrow">Our story</span>
+        <h1>Modern commerce built around real customer needs.</h1>
+        <p>NovaCart brings together thoughtful design, trusted products, and a better way to shop online. We focus on essentials that improve everyday life, from portable tech to elevated home finds.</p>
+    </div>
+</section>
+
+<section class="story-section">
+    <div class="container story-grid">
+        <div>
+            <h2>Designed to make shopping feel easy.</h2>
+            <p>We believe a quality online storefront should feel reassuring, effortless, and inspiring. Every product is chosen to balance style, performance, and value.</p>
+            <p>From the first click to final delivery, we work hard to ensure the experience feels premium and transparent.</p>
+        </div>
+        <div class="story-card">
+            <ul>
+                <li>Curated, high-quality products</li>
+                <li>Transparent pricing and shipping</li>
+                <li>Responsive support and quick returns</li>
+                <li>Fast, secure checkout experience</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Cart | NovaCart{% endblock %}
+
+{% block content %}
+<section class="page-hero minimal-hero">
+    <div class="container narrow-copy">
+        <span class="eyebrow">Your bag</span>
+        <h1>Shopping cart</h1>
+    </div>
+</section>
+
+<section class="cart-section">
+    <div class="container cart-shell">
+        {% if cart_items %}
+        <div class="cart-layout">
+            <div class="cart-list">
+                {% for item in cart_items %}
+                <article class="cart-item">
+                    <img src="{{ item.product.image }}" alt="{{ item.product.name }}">
+                    <div class="cart-item-info">
+                        <h3>{{ item.product.name }}</h3>
+                        <p>{{ item.product.category }}</p>
+                        <div class="quantity-row">
+                            <span>Qty: {{ item.quantity }}</span>
+                            <strong>${{ item.total }}</strong>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <aside class="summary-panel">
+                <h3>Order summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <strong>${{ subtotal }}</strong>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <strong>Free</strong>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Total</span>
+                    <strong>${{ total }}</strong>
+                </div>
+                <a href="{% url 'checkout' %}" class="btn btn-primary btn-block">Proceed to checkout</a>
+            </aside>
+        </div>
+        {% else %}
+        <div class="empty-cart">
+            <h2>Your cart is empty</h2>
+            <p>Browse our latest arrivals and add items you love.</p>
+            <a href="{% url 'home' %}" class="btn btn-primary">Continue shopping</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

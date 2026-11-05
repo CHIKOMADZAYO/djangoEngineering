@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern ecommerce storefront for technology, lifestyle, and home essentials.">
+    <title>{% block title %} | Premium Shopping{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="promo-bar">
+        <div class="container promo-inner">
+            <span>Free delivery for orders above KSh 5,000</span>
+            <span>New customer deal: up to 20% off</span>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container nav-shell">
+            <a class="brand" href="{% url 'home' %}">
+                <span class="brand-mark">N</span>
+                <span>NovaCart</span>
+            </a>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search products, brands and categories" aria-label="Search products">
+                <button type="button">Search</button>
+            </div>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="#products">Shop</a>
+                <a href="#categories">Categories</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="cart-link" href="{% url 'cart' %}">Cart</a>
+                <a class="btn btn-nav" href="{% url 'login_view' %}">Login</a>
+            </div>
+        </div>
+
+        <div class="category-strip">
+            <div class="container category-strip-inner">
+                <a href="#">Supermarket</a>
+                <a href="#">Health & Beauty</a>
+                <a href="#">Home & Office</a>
+                <a href="#">Phones & Tablets</a>
+                <a href="#">Electronics</a>
+                <a href="#">Fashion</a>
+                <a href="#">Computing</a>
+                <a href="#">Gaming</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <a class="brand footer-brand" href="{% url 'home' %}">
+                    <span class="brand-mark">N</span>
+                    <span>NovaCart</span>
+                </a>
+                <p>Curated essentials for modern living, delivered with premium support.</p>
+            </div>
+            <div>
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#products">New Arrivals</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Stay updated</h4>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email address" aria-label="Email address">
+                    <button type="submit">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>© 2026 NovaCart. All rights reserved.</span>
+            <span>Privacy Policy · Terms of Service</span>
+        </div>
+    </footer>
+</body>
+</html>

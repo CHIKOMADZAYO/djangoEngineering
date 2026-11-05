@@ -1,33 +1,166 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>WebsiteBlog Site</title>
-</head>
-<body>
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <h3 class="logo-text">BlogWebsite</h3>
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="jumia-hero">
+    <div class="container hero-wrap">
+        <div class="hero-cta">
+            <span class="tag-pill">Flash sale</span>
+            <h1>Big deals on the things you love</h1>
+            <p>Shop top brands with unbeatable prices, secure payment, and lightning-fast delivery.</p>
+
+            <div class="hero-trust-row">
+                <span>Free delivery</span>
+                <span>Secure checkout</span>
+                <span>Easy returns</span>
             </div>
 
-            <nav class="nav-link">
-                <ul>
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'reports' %}">Reports</a></li>
-                    <li><a href="{% url 'analytics' %}">Analytics</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
-                    <li><a href="{% url 'login_view' %}">Login</a></li>
-                    <li><a href="{% url 'register_view' %}">Register</a></li>
-                </ul>
-            </nav>
+            <div class="hero-buttons">
+                <a class="btn btn-primary" href="#products">Shop now</a>
+                <a class="btn btn-secondary" href="{% url 'about' %}">Learn more</a>
+            </div>
+            <div class="hero-stats">
+                <div><strong>25K+</strong><span>orders delivered</span></div>
+                <div><strong>4.9/5</strong><span>customer rating</span></div>
+                <div><strong>2h</strong><span>delivery window</span></div>
+            </div>
         </div>
-    </header>
 
-    <img src="{%static 'images/web.jpg'%}" alt="Web Image">
-</body>
-</html>
+        <div class="hero-visual-card">
+            <div class="promo-tag">Up to 40% off</div>
+            <div class="visual-overlay">
+                <div class="mini-stat">
+                    <span>Top rated</span>
+                    <strong>4.9/5</strong>
+                </div>
+                <div class="mini-stat">
+                    <span>Fast dispatch</span>
+                    <strong>2 hours</strong>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" alt="Premium shopping lifestyle" />
+        </div>
+    </div>
+</section>
+
+<section class="quick-shelf">
+    <div class="container quick-shelf-grid">
+        <div class="quick-item orange">
+            <span>Mobile deals</span>
+            <strong>From KSh 9,999</strong>
+        </div>
+        <div class="quick-item white">
+            <span>Home appliances</span>
+            <strong>Save up to 30%</strong>
+        </div>
+        <div class="quick-item dark">
+            <span>Fashion hub</span>
+            <strong>Fresh styles</strong>
+        </div>
+    </div>
+</section>
+
+<section class="categories-section" id="categories">
+    <div class="container">
+        <div class="section-header">
+            <h2>Shop by category</h2>
+        </div>
+        <div class="category-grid">
+            {% for category in categories %}
+            <article class="category-item">
+                <div class="category-icon">{{ category.icon }}</div>
+                <h3>{{ category.title }}</h3>
+                <p>{{ category.description }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="deal-strip">
+    <div class="container deal-strip-inner">
+        <div class="deal-box orange">
+            <span>Deals of the day</span>
+            <strong>Smart gadgets</strong>
+        </div>
+        <div class="deal-box dark">
+            <span>Weekend offers</span>
+            <strong>Home essentials</strong>
+        </div>
+        <div class="deal-box light">
+            <span>New arrivals</span>
+            <strong>Fashion must-haves</strong>
+        </div>
+    </div>
+</section>
+
+<section class="products-section" id="products">
+    <div class="container">
+        <div class="section-header split-header">
+            <div>
+                <span class="mini-label">Popular products</span>
+                <h2>Trending now</h2>
+            </div>
+            <a href="#" class="see-all">See all</a>
+        </div>
+
+        <div class="product-grid">
+            {% for product in featured_products %}
+            <article class="product-card">
+                <div class="product-visual">
+                    <a href="{% url 'product_detail' product.id %}"><img src="{{ product.image }}" alt="{{ product.name }}"></a>
+                    <span class="discount-tag">{{ product.badge }}</span>
+                </div>
+                <div class="product-meta-row">
+                    <span>⭐ {{ product.rating }}</span>
+                    <span>In stock</span>
+                </div>
+                <h3><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h3>
+                <div class="price-row">
+                    <strong>KSh {{ product.price }}</strong>
+                    <span>KSh {{ product.old_price }}</span>
+                </div>
+                <form method="post" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-small">Add to cart</button>
+                </form>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="trust-section">
+    <div class="container trust-grid">
+        {% for benefit in benefits %}
+        <div class="trust-item">
+            <div class="trust-icon">✓</div>
+            <div>
+                <h3>{{ benefit.title }}</h3>
+                <p>{{ benefit.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="testimonial-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="mini-label">Testimonials</span>
+            <h2>Loved by shoppers</h2>
+        </div>
+        <div class="testimonial-grid">
+            {% for testimonial in testimonials %}
+            <article class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>“{{ testimonial.quote }}”</p>
+                <div class="testimonial-author">
+                    <span class="avatar">{{ testimonial.name|slice:':1' }}</span>
+                    <strong>{{ testimonial.name }}</strong>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

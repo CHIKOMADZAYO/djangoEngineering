@@ -1,12 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Page</title>
-</head>
-<body>
-    <h1>Contact Page</h1>
-    <p>This is the contact page of the website.</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Contact | NovaCart{% endblock %}
+
+{% block content %}
+<section class="page-hero minimal-hero">
+    <div class="container narrow-copy">
+        <span class="eyebrow">Get in touch</span>
+        <h1>We’re here to help.</h1>
+        <p>Questions about orders, products, or support? Reach out and our team will get back to you quickly.</p>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container contact-grid">
+        <div class="contact-details">
+            <div class="info-card">
+                <h3>Email</h3>
+                <p>support@novacart.com</p>
+            </div>
+            <div class="info-card">
+                <h3>Phone</h3>
+                <p>+1 (800) 555-0148</p>
+            </div>
+            <div class="info-card">
+                <h3>Location</h3>
+                <p>245 Harbor Avenue, Suite 340<br>San Diego, CA</p>
+            </div>
+        </div>
+
+        <form class="contact-form">
+            <div class="field-row">
+                <label>
+                    Name
+                    <input type="text" placeholder="Your name">
+                </label>
+                <label>
+                    Email
+                    <input type="email" placeholder="you@example.com">
+                </label>
+            </div>
+            <label>
+                Subject
+                <input type="text" placeholder="How can we help?">
+            </label>
+            <label>
+                Message
+                <textarea rows="6" placeholder="Tell us more..."></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Send message</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
